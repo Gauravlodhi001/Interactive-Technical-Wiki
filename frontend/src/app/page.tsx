@@ -3,11 +3,27 @@ import { Database, Sparkles, Terminal } from "lucide-react";
 
 async function getGames() {
   try {
-    const res = await fetch('/api/games', { cache: 'no-store' });
+    const isDev = process.env.NODE_ENV === 'development';
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
+    const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+    
+    let baseUrl = '';
+    if (apiUrl) {
+      baseUrl = apiUrl;
+    } else if (vercelUrl) {
+      baseUrl = `https://${vercelUrl}`;
+    } else if (isDev) {
+      baseUrl = 'http://127.0.0.1:8000';
+    }
+
+    const url = baseUrl ? `${baseUrl.replace(/\/$/, '')}/api/games` : '/api/games';
+    
+    console.log(`Fetching games from: ${url}`);
+    const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to fetch games');
     return res.json();
   } catch (error) {
-    console.error(error);
+    console.error("Error in getGames:", error);
     return [];
   }
 }
