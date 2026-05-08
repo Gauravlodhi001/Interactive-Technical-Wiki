@@ -12,8 +12,7 @@ const nextConfig: NextConfig = {
       ];
     }
     
-    // In development, proxy to local FastAPI.
-    // In production, Vercel edge router and vercel.json will handle /api to api/index.py
+    // In development, proxy to local FastAPI server
     if (process.env.NODE_ENV === 'development') {
       return [
         {
@@ -23,7 +22,13 @@ const nextConfig: NextConfig = {
       ];
     }
 
-    return [];
+    // In production, proxy to the Vercel Python serverless function at /api
+    return [
+      {
+        source: "/api/:path*",
+        destination: "/api",
+      },
+    ];
   },
 };
 
