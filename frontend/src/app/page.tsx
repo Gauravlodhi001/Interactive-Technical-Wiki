@@ -3,7 +3,7 @@ import { Database, Sparkles, Terminal } from "lucide-react";
 
 async function getGames() {
   try {
-    const res = await fetch('http://127.0.0.1:8000/api/games', { cache: 'no-store' });
+    const res = await fetch('/api/games', { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to fetch games');
     return res.json();
   } catch (error) {
@@ -28,12 +28,12 @@ export default async function Home() {
             <Sparkles className="w-4 h-4" />
             <span className="text-sm font-semibold tracking-wide">Beta v0.1.0</span>
           </div>
-          
+
           <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight mb-8">
             The Interactive <br />
             <span className="text-gradient">Technical Wiki</span>
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed">
             Dive deep into the underlying mechanics, frame data, and logic systems of your favorite games. Built for engineers and min-maxers.
           </p>
@@ -79,7 +79,7 @@ export default async function Home() {
               {games.length} databases active
             </div>
           </div>
-          
+
           {games.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {games.map((game: any) => (

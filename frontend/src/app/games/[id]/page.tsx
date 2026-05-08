@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 async function getGame(id: string) {
   try {
-    const res = await fetch(`http://127.0.0.1:8000/api/games/${id}`, { cache: 'no-store' });
+    const res = await fetch(`/api/games/${id}`, { cache: 'no-store' });
     if (!res.ok) {
       if (res.status === 404) return null;
       throw new Error('Failed to fetch game');
@@ -19,7 +19,8 @@ async function getGame(id: string) {
 
 async function getMechanics(id: string) {
   try {
-    const res = await fetch(`http://127.0.0.1:8000/api/mechanics/${id}`, { cache: 'no-store' });
+    const res = await fetch(`/api/mechanics/${id}`, { cache: 'no-store' });
+
     if (!res.ok) throw new Error('Failed to fetch mechanics');
     return res.json();
   } catch (error) {
@@ -31,7 +32,7 @@ async function getMechanics(id: string) {
 export default async function GamePage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
   const game = await getGame(resolvedParams.id);
-  
+
   if (!game) {
     notFound();
   }
@@ -44,7 +45,7 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
       <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-secondary/10 rounded-full blur-[150px] pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto px-6 py-12 relative z-10">
-        
+
         {/* Navigation */}
         <Link href="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-12 group">
           <ArrowLeft className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" />
@@ -56,7 +57,7 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
           <div className="w-24 h-24 md:w-32 md:h-32 glass-card rounded-3xl flex items-center justify-center shrink-0">
             <Gamepad2 className="w-12 h-12 md:w-16 md:h-16 text-primary opacity-80" />
           </div>
-          
+
           <div>
             <div className="flex items-center gap-3 mb-3">
               <span className="text-xs font-semibold tracking-wider uppercase text-slate-300 bg-slate-800 px-3 py-1 rounded-full border border-white/10">
