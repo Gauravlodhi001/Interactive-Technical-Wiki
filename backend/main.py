@@ -16,15 +16,21 @@ app.add_middleware(
 
 # Mock Data
 MOCK_GAMES = [
-    GameEntity(id="minecraft", name="Minecraft", genre="Sandbox", version="1.20"),
-    GameEntity(id="elden-ring", name="Elden Ring", genre="Action RPG", version="1.10"),
-    GameEntity(id="league-of-legends", name="League of Legends", genre="MOBA", version="14.5")
+    GameEntity(id="minecraft", name="Minecraft", genre="Sandbox", version="1.20", image_url="/minecraft.jpg"),
+    GameEntity(id="league-of-legends", name="League of Legends", genre="MOBA", version="14.5"),
+    GameEntity(id="clash-of-clans", name="Clash of Clans", genre="Strategy", version="16.1"),
+    GameEntity(id="clash-royale", name="Clash Royale", genre="Strategy", version="3.3314"),
+    GameEntity(id="free-fire", name="Free Fire", genre="Battle Royale", version="1.103"),
+    GameEntity(id="mobaa5v5", name="MOBAA5v5", genre="MOBA", version="1.0")
 ]
 
 MOCK_CATEGORIES = [
     MechanicCategory(id="redstone", game_id="minecraft", name="Redstone", description="Logic and circuitry mechanics"),
-    MechanicCategory(id="frame-data", game_id="elden-ring", name="Frame Data", description="Animation and i-frame data"),
-    MechanicCategory(id="scaling", game_id="league-of-legends", name="Scaling", description="Champion stat scaling mechanics")
+    MechanicCategory(id="scaling", game_id="league-of-legends", name="Scaling", description="Champion stat scaling mechanics"),
+    MechanicCategory(id="troop-ai", game_id="clash-of-clans", name="Troop AI", description="Pathfinding and targeting logic"),
+    MechanicCategory(id="elixir-trade", game_id="clash-royale", name="Elixir Trading", description="Resource advantage mechanics"),
+    MechanicCategory(id="recoil", game_id="free-fire", name="Weapon Recoil", description="Spray patterns and reset times"),
+    MechanicCategory(id="lane-control", game_id="mobaa5v5", name="Lane Control", description="Minion wave management")
 ]
 
 MOCK_SNAPSHOTS = [
@@ -36,11 +42,18 @@ MOCK_SNAPSHOTS = [
         logic_description="A highly responsive clock circuit created using a redstone comparator in subtract mode."
     ),
     MechanicSnapshot(
-        id="parry-window",
-        category_id="frame-data",
-        name="Buckler Parry",
-        variables={"startup_frames": 8, "active_frames": 11, "recovery_frames": 35},
-        logic_description="The timing window for successfully deflecting an enemy attack using the Buckler shield."
+        id="wall-breaker-pathing",
+        category_id="troop-ai",
+        name="Wall Breaker Targeting",
+        variables={"target_preference": "Enclosed Buildings", "damage_multiplier_vs_walls": 40},
+        logic_description="Wall Breakers target the nearest building that is partially or fully enclosed by un-destroyed walls."
+    ),
+    MechanicSnapshot(
+        id="positive-elixir-trade",
+        category_id="elixir-trade",
+        name="Log vs Goblin Barrel",
+        variables={"log_cost": 2, "barrel_cost": 3, "net_elixir": "+1"},
+        logic_description="Using a 2-elixir Log to counter a 3-elixir Goblin Barrel generates a +1 elixir advantage."
     )
 ]
 
