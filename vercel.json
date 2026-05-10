@@ -4,6 +4,11 @@
       "entrypoint": "frontend",
       "routePrefix": "/",
       "framework": "nextjs"
+    },
+    "api": {
+      "entrypoint": "backend/main.py",
+      "routePrefix": "/api",
+      "framework": "fastapi"
     }
   }
 }

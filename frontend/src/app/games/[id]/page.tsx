@@ -3,28 +3,43 @@ import { ArrowLeft, Gamepad2 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+function getBaseUrl() {
+  const isDev = process.env.NODE_ENV === 'development';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
+  const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+  
+  if (apiUrl) return apiUrl.replace(/\/$/, '');
+  if (vercelUrl) return `https://${vercelUrl}`;
+  if (isDev) return 'http://127.0.0.1:8000';
+  return '';
+}
+
 async function getGame(id: string) {
   try {
-    const res = await fetch(`/api/games/${id}`, { cache: 'no-store' });
+    const baseUrl = getBaseUrl();
+    const url = baseUrl ? `${baseUrl}/api/games/${id}` : `/api/games/${id}`;
+    const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) {
       if (res.status === 404) return null;
       throw new Error('Failed to fetch game');
     }
     return res.json();
   } catch (error) {
-    console.error(error);
+    console.error("Error in getGame:", error);
     return null;
   }
 }
 
 async function getMechanics(id: string) {
   try {
-    const res = await fetch(`/api/mechanics/${id}`, { cache: 'no-store' });
+    const baseUrl = getBaseUrl();
+    const url = baseUrl ? `${baseUrl}/api/mechanics/${id}` : `/api/mechanics/${id}`;
+    const res = await fetch(url, { cache: 'no-store' });
 
     if (!res.ok) throw new Error('Failed to fetch mechanics');
     return res.json();
   } catch (error) {
-    console.error(error);
+    console.error("Error in getMechanics:", error);
     return [];
   }
 }
