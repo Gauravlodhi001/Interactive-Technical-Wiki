@@ -22,13 +22,7 @@ const nextConfig: NextConfig = {
       ];
     }
 
-    // In production, proxy to the Vercel Python serverless function at /api
-    return [
-      {
-        source: "/api/:path*",
-        destination: "/api",
-      },
-    ];
+    return [];
   },
 };
 
