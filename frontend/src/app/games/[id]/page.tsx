@@ -69,9 +69,16 @@ export default async function GamePage({ params }: { params: Promise<{ id: strin
 
         {/* Game Header */}
         <div className="flex flex-col md:flex-row gap-8 items-start mb-16">
-          <div className="w-24 h-24 md:w-32 md:h-32 glass-card rounded-3xl flex items-center justify-center shrink-0">
-            <Gamepad2 className="w-12 h-12 md:w-16 md:h-16 text-primary opacity-80" />
-          </div>
+          {game.image_url ? (
+            <div 
+              className="w-24 h-24 md:w-32 md:h-32 rounded-3xl shrink-0 bg-cover bg-center shadow-lg border border-white/10"
+              style={{ backgroundImage: `url("${game.image_url}")` }}
+            />
+          ) : (
+            <div className="w-24 h-24 md:w-32 md:h-32 glass-card rounded-3xl flex items-center justify-center shrink-0">
+              <Gamepad2 className="w-12 h-12 md:w-16 md:h-16 text-primary opacity-80" />
+            </div>
+          )}
 
           <div>
             <div className="flex items-center gap-3 mb-3">

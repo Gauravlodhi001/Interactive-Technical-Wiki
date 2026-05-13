@@ -14,8 +14,16 @@ export default function GameCard({ id, name, genre, version, imageUrl }: GamePro
     <Link href={`/games/${id}`} className="block h-full">
       <div className="glass-card glass-card-hover rounded-2xl p-6 h-full flex flex-col justify-between group cursor-pointer relative overflow-hidden">
         
+        {/* Decorative background image if provided */}
+        {imageUrl && (
+          <div 
+            className="absolute inset-0 z-0 opacity-50 group-hover:opacity-80 transition-opacity duration-500 bg-cover bg-center"
+            style={{ backgroundImage: `url("${imageUrl}")` }}
+          />
+        )}
+
         {/* Decorative background glow */}
-        <div className="absolute -right-10 -top-10 w-32 h-32 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors duration-500"></div>
+        <div className="absolute -right-10 -top-10 w-32 h-32 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors duration-500 z-0"></div>
 
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-4">

@@ -16,12 +16,13 @@ app.add_middleware(
 
 # Mock Data
 MOCK_GAMES = [
-    GameEntity(id="minecraft", name="Minecraft", genre="Sandbox", version="1.20", image_url="/minecraft.jpg"),
-    GameEntity(id="league-of-legends", name="League of Legends", genre="MOBA", version="14.5"),
-    GameEntity(id="clash-of-clans", name="Clash of Clans", genre="Strategy", version="16.1"),
-    GameEntity(id="clash-royale", name="Clash Royale", genre="Strategy", version="3.3314"),
-    GameEntity(id="free-fire", name="Free Fire", genre="Battle Royale", version="1.103"),
-    GameEntity(id="mobaa5v5", name="MOBAA5v5", genre="MOBA", version="1.0")
+    GameEntity(id="minecraft", name="Minecraft", genre="Sandbox", version="1.20", image_url="/images/games/Minecraft.jpg"),
+    GameEntity(id="league-of-legends", name="League of Legends", genre="MOBA", version="14.5", image_url="/images/games/League of Legends.jpg"),
+    GameEntity(id="clash-of-clans", name="Clash of Clans", genre="Strategy", version="16.1", image_url="/images/games/Clash of clan.jpg"),
+    GameEntity(id="clash-royale", name="Clash Royale", genre="Strategy", version="3.3314", image_url="/images/games/Clash Royale.jpg"),
+    GameEntity(id="free-fire", name="Free Fire", genre="Battle Royale", version="1.103", image_url="/images/games/freefire.jpg"),
+    GameEntity(id="mobaa5v5", name="MOBAA5v5", genre="MOBA", version="1.0", image_url="/images/games/Mobba 5v5.png"),
+    GameEntity(id="dota-2", name="Dota 2", genre="MOBA", version="7.35", image_url="/images/games/Dota 2.png")
 ]
 
 MOCK_CATEGORIES = [
